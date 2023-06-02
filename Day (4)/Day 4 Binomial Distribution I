@@ -1,0 +1,18 @@
+# Enter your code here. Read input from STDIN. Print output to STDOUT
+import math
+
+def combination(n, x):
+    return math.factorial(n)/(math.factorial(x)*math.factorial(n-x))
+
+def binomial_distribution(x, n, p):
+    return combination(n, x)*pow(p, x)*pow(1-p, n-x)
+
+def at_least_3_boys():
+    result = 0
+    for i in range(3, 7):
+        result += binomial_distribution(i, 6, 1.09/2.09)
+    return result
+
+rat_boys, rat_girls = list(map(float, input().split(" ")))
+
+print(round(sum([binomial_distribution(i, 6, rat_boys/(rat_boys + rat_girls)) for i in range(3, 7)]), 3))
